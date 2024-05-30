@@ -4,19 +4,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+    <ImageButton
+        android:id="@+id/profile"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:src="@drawable/color_picker_background"
+        tools:layout_editor_absoluteX="253dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <Button
+        android:id="@+id/tops"
+        android:layout_width="800px"
+        android:layout_height="150px"
+        android:backgroundTint="@color/white"
+        android:text="Skirts"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="312dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/tops"
+        android:layout_width="800px"
+        android:layout_height="150px"
+        android:backgroundTint="@color/white"
+        android:text="Tops"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="198dp" />
+
+    <Button
+        android:id="@+id/skirts"
+        android:layout_width="800px"
+        android:layout_height="150px"
+        android:backgroundTint="@color/white"
+        android:text="Pants"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="255dp" />
+
+    <Button
+        android:id="@+id/dresses"
+        android:layout_width="800px"
+        android:layout_height="150px"
+        android:backgroundTint="@color/white"
+        android:text="Dresses"
+        android:textAllCaps="false"
+        android:textColor="#333333"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="369dp" />
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="250px"
+        android:layout_height="150px"
+        android:backgroundTint="@color/white"
+        android:text="+"
+        android:textSize="24dp"
+        android:textAllCaps="false"
+        android:textColor="#04898D"
+        tools:layout_editor_absoluteX="158dp"
+        tools:layout_editor_absoluteY="426dp" />
+
+    <ImageButton
+        android:id="@+id/star"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:src="@drawable/color_picker_background"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <ImageButton
+        android:id="@+id/picker"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:src="@drawable/color_picker_background"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="900px"
+        android:layout_height="300px"
+        android:inputType="text"
+        android:text="Welcome to Outfit Picker!"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="62dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
