@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_color_picker">
+
+    <fragment
+        android:id="@+id/navigation_color_picker"
+        android:name="si.uni_lj.fe.tnuv.outfitpicker.ui.ColorPickerFragment"
+        android:label="Color Picker"
+        tools:layout="@layout/fragment_color_picker" />
+
+    <fragment
+        android:id="@+id/navigation_closet"
+        android:name="si.uni_lj.fe.tnuv.outfitpicker.ui.ClosetFragment"
+        android:label="Closet"
+        tools:layout="@layout/fragment_closet" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="si.uni_lj.fe.tnuv.outfitpicker.ui.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

@@ -22,4 +22,10 @@
     <style name="Theme.OutfitPicker.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.OutfitPicker.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="welcome_to_">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 </resources>
