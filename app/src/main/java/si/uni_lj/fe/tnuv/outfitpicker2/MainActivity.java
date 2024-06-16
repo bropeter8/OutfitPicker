@@ -21,24 +21,13 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment(new PickerFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
-
-            switch (item.getItemId()) {
-
-                case R.id.picker:
-                    replaceFragment(new PickerFragment());
-                    break;
-
-                case R.id.closet:
-                    replaceFragment(new ClosetFragment());
-                    break;
-
-                case R.id.profile:
-                    replaceFragment(new ProfileFragment());
-                    break;
-
-
+            if (item.getItemId() == R.id.picker) {
+                replaceFragment(new PickerFragment());
+            } else if (item.getItemId() == R.id.closet) {
+                replaceFragment(new ClosetFragment());
+            } else if (item.getItemId() == R.id.profile) {
+                replaceFragment(new ProfileFragment());
             }
-
             return true;
         });
     }
