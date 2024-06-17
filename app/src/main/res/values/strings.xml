@@ -8,4 +8,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_clothes">Add Clothes</string>
     <string name="clothing_image">Clothing Image</string>
+    <string name="picker">Picker</string>
+    <string name="top">Top</string>
+    <string name="bottom">Bottom</string>
 </resources>
