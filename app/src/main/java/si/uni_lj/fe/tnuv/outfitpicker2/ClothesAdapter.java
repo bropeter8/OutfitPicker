@@ -1,43 +1,46 @@
 package si.uni_lj.fe.tnuv.outfitpicker2;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
-public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ClothesViewHolder> {
+public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageViewHolder> {
 
-    private List<ClothingItem> clothingItems;
+    private List<String> imagePaths;
 
-    public ClothesAdapter(List<ClothingItem> clothingItems) {
-        this.clothingItems = clothingItems;
+    public ClothesAdapter(List<String> imagePaths) {
+        this.imagePaths = imagePaths;
     }
 
     @NonNull
     @Override
-    public ClothesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_clothing, parent, false);
-        return new ClothesViewHolder(view);
+        return new ImageViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ClothesViewHolder holder, int position) {
-        ClothingItem clothingItem = clothingItems.get(position);
-        holder.imageView.setImageResource(clothingItem.getImageResourceId());
+    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
+        String imagePath = imagePaths.get(position);
+        holder.imageView.setImageURI(Uri.parse(imagePath));
     }
 
     @Override
     public int getItemCount() {
-        return clothingItems.size();
+        return imagePaths.size();
     }
 
-    public static class ClothesViewHolder extends RecyclerView.ViewHolder {
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
 
-        public ClothesViewHolder(@NonNull View itemView) {
+        public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image_view);
         }
