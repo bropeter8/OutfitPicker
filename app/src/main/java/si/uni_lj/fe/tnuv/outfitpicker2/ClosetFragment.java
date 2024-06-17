@@ -16,13 +16,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ClosetFragment extends Fragment {
 
-    private FloatingActionButton fabAddClothes;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_closet, container, false);
-        fabAddClothes = view.findViewById(R.id.fab_add_clothes);
+        FloatingActionButton fabAddClothes = view.findViewById(R.id.fab_add_clothes);
 
         fabAddClothes.setOnClickListener(v -> showAddClothesFragment());
 
