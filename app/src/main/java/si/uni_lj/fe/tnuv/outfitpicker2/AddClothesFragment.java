@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ public class AddClothesFragment extends Fragment {
         MaterialButton buttonPickTop = view.findViewById(R.id.button_pick_top);
         MaterialButton buttonPhotoBottoms = view.findViewById(R.id.button_photo_bottoms);
         MaterialButton buttonPickBottoms = view.findViewById(R.id.button_pick_bottoms);
+        ImageButton backButton = view.findViewById(R.id.back_button);
 
         // Set click listeners for buttons
         buttonPhotoTop.setOnClickListener(v -> {
@@ -43,6 +45,11 @@ public class AddClothesFragment extends Fragment {
         buttonPickBottoms.setOnClickListener(v -> {
             // TODO: Implement action for picking existing bottoms
             Toast.makeText(getContext(), "Pick Bottoms", Toast.LENGTH_SHORT).show();
+        });
+
+        backButton.setOnClickListener(v -> {
+            // Navigate back to the previous fragment
+            requireActivity().getSupportFragmentManager().popBackStack();
         });
 
         return view;
