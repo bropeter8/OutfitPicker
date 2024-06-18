@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import si.uni_lj.fe.tnuv.outfitpicker2.databinding.ActivityMainBinding;
@@ -26,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.closet) {
                 replaceFragment(new ClosetFragment());
             } else if (item.getItemId() == R.id.profile) {
-                replaceFragment(new ProfileFragment());
+                // Start ProfileActivity instead of replacing fragment
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
             }
             return true;
         });

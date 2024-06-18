@@ -49,6 +49,9 @@
             </intent-filter>
         </activity>
 
+        <!-- Declare ProfileActivity -->
+        <activity android:name=".ProfileActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="si.uni_lj.fe.tnuv.outfitpicker2.fileprovider"
