@@ -17,10 +17,14 @@ import java.util.List;
 
 public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageViewHolder> {
 
-    private List<String> imagePaths;
+    private List<ClothingItem> clothingItems;
 
-    public ClothesAdapter(List<String> imagePaths) {
-        this.imagePaths = imagePaths;
+    public ClothesAdapter(List<ClothingItem> clothingItems) {
+        this.clothingItems = clothingItems;
+    }
+
+    public void setClothingItems(List<ClothingItem> clothingItems) {
+        this.clothingItems = clothingItems;
     }
 
     @NonNull
@@ -32,8 +36,9 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageVie
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        String imagePath = imagePaths.get(position);
-        Log.d("ClothesAdapter", "Loading image: " + imagePath);
+        ClothingItem clothingItem = clothingItems.get(position);
+        String imagePath = clothingItem.getImagePath();
+        Log.d("ClothesAdapter", "Loading image: " + imagePath + " isTop: " + clothingItem.isTop());
 
         // Check if the file path is valid
         File imgFile = new File(imagePath);
@@ -54,7 +59,7 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageVie
 
     @Override
     public int getItemCount() {
-        return imagePaths.size();
+        return clothingItems.size();
     }
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {

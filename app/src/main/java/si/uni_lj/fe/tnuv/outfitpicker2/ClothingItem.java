@@ -1,17 +1,19 @@
 package si.uni_lj.fe.tnuv.outfitpicker2;
 
 public class ClothingItem {
-    private int imageResourceId;
+    private String imagePath;
+    private boolean isTop;
 
-    public ClothingItem(int imageResourceId) {
-        this.imageResourceId = imageResourceId;
+    public ClothingItem(String imagePath, boolean isTop) {
+        this.imagePath = imagePath;
+        this.isTop = isTop;
     }
 
-    public int getImageResourceId() {
-        return imageResourceId;
+    public String getImagePath() {
+        return imagePath;
     }
 
-    public void setImageResourceId(int imageResourceId) {
-        this.imageResourceId = imageResourceId;
+    public boolean isTop() {
+        return isTop;
     }
 }

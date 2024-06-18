@@ -43,6 +43,7 @@ public class AddClothesFragment extends Fragment {
     private static final int REQUEST_CAMERA_PERMISSION = 100;
     private String currentPhotoPath;
 
+    private boolean isTop;
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -60,7 +61,7 @@ public class AddClothesFragment extends Fragment {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     // The photo was taken and saved to the currentPhotoPath
                     Log.d(TAG, "Photo saved at: " + currentPhotoPath);
-                    ImageStorageUtil.addImagePath(requireContext(), currentPhotoPath);
+                    ImageStorageUtil.addClothingItem(requireContext(), new ClothingItem(currentPhotoPath, isTop));
                     Toast.makeText(getContext(), "Photo saved: " + currentPhotoPath, Toast.LENGTH_SHORT).show();
                 }
             });
@@ -79,6 +80,7 @@ public class AddClothesFragment extends Fragment {
 
         // Set click listeners for buttons
         buttonPhotoTop.setOnClickListener(v -> {
+            isTop = true;
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 Log.d(TAG, "Requesting camera permission");
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA);
@@ -94,6 +96,7 @@ public class AddClothesFragment extends Fragment {
         });
 
         buttonPhotoBottoms.setOnClickListener(v -> {
+            isTop = false;
             if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 Log.d(TAG, "Requesting camera permission");
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA);

@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,8 +25,11 @@ public class ClosetFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ClothesAdapter adapter;
-    private List<String> imagePaths;
+    private List<ClothingItem> clothingItems;
     private FloatingActionButton fabAddClothes;
+
+    private Button buttonAll, buttonTops, buttonBottoms;
+    private Button selectedButton;
 
     @Nullable
     @Override
@@ -33,15 +38,22 @@ public class ClosetFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
         fabAddClothes = view.findViewById(R.id.fab_add_clothes);
+        buttonAll = view.findViewById(R.id.button_all);
+        buttonTops = view.findViewById(R.id.button_tops);
+        buttonBottoms = view.findViewById(R.id.button_bottoms);
+
+        // Set default selected button
+        selectedButton = buttonAll;
+        updateButtonStyles();
 
         // Clear old SharedPreferences data (only call this once, you can comment it out after the first run)
         // ImageStorageUtil.clearOldData(requireContext());
 
         // Retrieve stored image paths using ImageStorageUtil
-        imagePaths = ImageStorageUtil.getImagePaths(requireContext());
+        clothingItems = ImageStorageUtil.getClothingItems(requireContext());
 
         // Setup RecyclerView adapter and display images
-        adapter = new ClothesAdapter(imagePaths);
+        adapter = new ClothesAdapter(clothingItems);
         recyclerView.setAdapter(adapter);
 
         // Use GridLayoutManager with 2 columns
@@ -49,6 +61,23 @@ public class ClosetFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
         fabAddClothes.setOnClickListener(v -> showAddClothesFragment());
+
+        // Set up button click listeners for filtering
+        buttonAll.setOnClickListener(v -> {
+            selectedButton = buttonAll;
+            updateButtonStyles();
+            showAllClothes();
+        });
+        buttonTops.setOnClickListener(v -> {
+            selectedButton = buttonTops;
+            updateButtonStyles();
+            showTops();
+        });
+        buttonBottoms.setOnClickListener(v -> {
+            selectedButton = buttonBottoms;
+            updateButtonStyles();
+            showBottoms();
+        });
 
         return view;
     }
@@ -61,13 +90,61 @@ public class ClosetFragment extends Fragment {
         transaction.commit();
     }
 
+    private void showAllClothes() {
+        adapter.setClothingItems(clothingItems);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void showTops() {
+        List<ClothingItem> tops = new ArrayList<>();
+        for (ClothingItem item : clothingItems) {
+            if (item.isTop()) {
+                tops.add(item);
+            }
+        }
+        adapter.setClothingItems(tops);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void showBottoms() {
+        List<ClothingItem> bottoms = new ArrayList<>();
+        for (ClothingItem item : clothingItems) {
+            if (!item.isTop()) {
+                bottoms.add(item);
+            }
+        }
+        adapter.setClothingItems(bottoms);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void updateButtonStyles() {
+        Button[] buttons = {buttonAll, buttonTops, buttonBottoms};
+        for (Button button : buttons) {
+            if (button == selectedButton) {
+                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.purple_500));
+                button.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                button.setAlpha(1f); // Fully opaque
+            } else {
+                button.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.purple_200));
+                button.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+                button.setAlpha(0.8f); // Lower opacity
+            }
+        }
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        // Reload image paths in case new images were added
-        imagePaths = ImageStorageUtil.getImagePaths(requireContext());
+        // Reload clothing items in case new images were added
+        clothingItems = ImageStorageUtil.getClothingItems(requireContext());
+        adapter.setClothingItems(clothingItems);
         adapter.notifyDataSetChanged();
 
-        Log.d("ClosetFragment", "Loaded image paths on resume: " + imagePaths);
+        // Log the loaded clothing items
+        for (ClothingItem item : clothingItems) {
+            Log.d("ClosetFragment", "Loaded item: " + item.getImagePath() + " isTop: " + item.isTop());
+        }
+
+        Log.d("ClosetFragment", "Loaded clothing items on resume: " + clothingItems);
     }
 }
