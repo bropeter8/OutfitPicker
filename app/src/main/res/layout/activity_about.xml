@@ -28,7 +28,7 @@
         android:id="@+id/about_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About the App"
+        android:text="@string/about_text"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:layout_marginTop="16dp"/>
