@@ -9,25 +9,33 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PickerFragment extends Fragment {
 
+    private static final String TAG = "PickerFragment";
     private static final String PREFS_NAME = "outfit_prefs";
     private static final String PREF_OUTFITS = "saved_outfits";
 
     private ViewPager2 viewPagerTop, viewPagerBottom;
     private Button saveOutfitButton;
-    private VPAdapter vpAdapterTop, vpAdapterBottom;
+    private FloatingActionButton arrowLeftTop, arrowRightTop, arrowLeftBottom, arrowRightBottom;
+    private PickerClothesAdapter vpAdapterTop, vpAdapterBottom;
     private SharedPreferences sharedPreferences;
+    private List<ClothingItem> tops, bottoms;
 
     public PickerFragment() {
         // Required empty public constructor
@@ -47,35 +55,45 @@ public class PickerFragment extends Fragment {
         viewPagerTop = view.findViewById(R.id.viewpager_top);
         viewPagerBottom = view.findViewById(R.id.viewpager_bottom);
         saveOutfitButton = view.findViewById(R.id.save_outfit_button);
+        arrowLeftTop = view.findViewById(R.id.arrow_left_top);
+        arrowRightTop = view.findViewById(R.id.arrow_right_top);
+        arrowLeftBottom = view.findViewById(R.id.arrow_left_bottom);
+        arrowRightBottom = view.findViewById(R.id.arrow_right_bottom);
 
-        // Assuming you have a list of drawable resources for tops and bottoms
-        int[] tops = {R.drawable.blue_tshirt, R.drawable.black_tshirt};
-        int[] bottoms = {R.drawable.black_jeans, R.drawable.blue_jeans};
+        loadClothingItems();
 
-        ArrayList<ViewPagerItem> viewPagerTopItems = new ArrayList<>();
-        for (int top : tops) {
-            viewPagerTopItems.add(new ViewPagerItem(top));
-        }
-        vpAdapterTop = new VPAdapter(viewPagerTopItems);
+        // Set up adapters for tops and bottoms
+        vpAdapterTop = new PickerClothesAdapter(tops);
         viewPagerTop.setAdapter(vpAdapterTop);
 
-        ArrayList<ViewPagerItem> viewPagerBottomItems = new ArrayList<>();
-        for (int bottom : bottoms) {
-            viewPagerBottomItems.add(new ViewPagerItem(bottom));
-        }
-        vpAdapterBottom = new VPAdapter(viewPagerBottomItems);
+        vpAdapterBottom = new PickerClothesAdapter(bottoms);
         viewPagerBottom.setAdapter(vpAdapterBottom);
 
-        saveOutfitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveSelectedOutfit();
-            }
-        });
+        // Set up arrow buttons to navigate through ViewPager2
+        arrowLeftTop.setOnClickListener(v -> viewPagerTop.setCurrentItem(viewPagerTop.getCurrentItem() - 1, true));
+        arrowRightTop.setOnClickListener(v -> viewPagerTop.setCurrentItem(viewPagerTop.getCurrentItem() + 1, true));
+        arrowLeftBottom.setOnClickListener(v -> viewPagerBottom.setCurrentItem(viewPagerBottom.getCurrentItem() - 1, true));
+        arrowRightBottom.setOnClickListener(v -> viewPagerBottom.setCurrentItem(viewPagerBottom.getCurrentItem() + 1, true));
+
+        saveOutfitButton.setOnClickListener(v -> saveSelectedOutfit());
 
         loadSavedOutfits();
 
         return view;
+    }
+
+    private void loadClothingItems() {
+        List<ClothingItem> allClothingItems = ImageStorageUtil.getClothingItems(requireContext());
+        tops = new ArrayList<>();
+        bottoms = new ArrayList<>();
+        for (ClothingItem item : allClothingItems) {
+            if (item.isTop()) {
+                tops.add(item);
+            } else {
+                bottoms.add(item);
+            }
+        }
+        Log.d(TAG, "Tops: " + tops.size() + ", Bottoms: " + bottoms.size());
     }
 
     private void saveSelectedOutfit() {
@@ -92,6 +110,7 @@ public class PickerFragment extends Fragment {
         editor.apply();
 
         Toast.makeText(requireContext(), "Outfit saved successfully", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "Saved outfit: " + outfit);
     }
 
     private void loadSavedOutfits() {
@@ -109,6 +128,7 @@ public class PickerFragment extends Fragment {
             // Ensure viewpagers are set to the saved positions
             viewPagerTop.setCurrentItem(savedTopPosition);
             viewPagerBottom.setCurrentItem(savedBottomPosition);
+            Log.d(TAG, "Loaded saved outfit: Top=" + savedTopPosition + ", Bottom=" + savedBottomPosition);
         }
     }
 }

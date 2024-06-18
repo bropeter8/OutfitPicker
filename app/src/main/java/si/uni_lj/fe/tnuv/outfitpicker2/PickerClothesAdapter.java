@@ -15,11 +15,11 @@ import com.bumptech.glide.Glide;
 import java.io.File;
 import java.util.List;
 
-public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageViewHolder> {
+public class PickerClothesAdapter extends RecyclerView.Adapter<PickerClothesAdapter.ImageViewHolder> {
 
     private List<ClothingItem> clothingItems;
 
-    public ClothesAdapter(List<ClothingItem> clothingItems) {
+    public PickerClothesAdapter(List<ClothingItem> clothingItems) {
         this.clothingItems = clothingItems;
     }
 
@@ -30,7 +30,7 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageVie
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_closet_clothing, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_clothing, parent, false);
         return new ImageViewHolder(view);
     }
 
@@ -38,7 +38,7 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageVie
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         ClothingItem clothingItem = clothingItems.get(position);
         String imagePath = clothingItem.getImagePath();
-        Log.d("ClothesAdapter", "Loading image: " + imagePath + " isTop: " + clothingItem.isTop());
+        Log.d("PickerClothesAdapter", "Loading image: " + imagePath + " isTop: " + clothingItem.isTop());
 
         // Check if the file path is valid
         File imgFile = new File(imagePath);
@@ -51,9 +51,9 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageVie
                     .into(holder.imageView);
 
             // Log to confirm the URI
-            Log.d("ClothesAdapter", "Image URI: " + imageUri.toString());
+            Log.d("PickerClothesAdapter", "Image URI: " + imageUri.toString());
         } else {
-            Log.e("ClothesAdapter", "File does not exist: " + imagePath);
+            Log.e("PickerClothesAdapter", "File does not exist: " + imagePath);
         }
     }
 

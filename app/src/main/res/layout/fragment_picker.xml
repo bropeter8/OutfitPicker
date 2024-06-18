@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_color"
-    tools:context=".ClosetFragment">
-
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".PickerFragment">
 
     <TextView
+        android:id="@+id/PickerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -17,31 +16,77 @@
         android:text="@string/picker"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:textSize="30sp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/arrow_left_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/PickerText"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="130dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_top"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="60dp"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias=".376"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="280dp"
+        android:layout_below="@id/PickerText"
+        android:layout_toEndOf="@id/arrow_left_top"
+        android:layout_toStartOf="@id/arrow_right_top"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintDimensionRatio="3:4" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/arrow_right_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/PickerText"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="130dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_forward" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/arrow_left_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/viewpager_top"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="150dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_back" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_bottom"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="360dp"
-        android:scaleType="centerInside"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_bias=".376"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="20dp"
+        android:layout_height="280dp"
+        android:layout_below="@+id/viewpager_top"
+        android:layout_toEndOf="@id/arrow_left_bottom"
+        android:layout_toStartOf="@id/arrow_right_bottom"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_centerVertical="true"
+        app:layout_constraintDimensionRatio="3:4" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/arrow_right_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/viewpager_top"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="150dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_arrow_forward" />
+
     <Button
         android:id="@+id/save_outfit_button"
         android:layout_width="wrap_content"
