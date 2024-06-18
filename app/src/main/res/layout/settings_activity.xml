@@ -53,4 +53,14 @@
         android:clickable="true"
         android:onClick="openAboutActivity"/>
 
+    <ImageView
+        android:id="@+id/additional_2"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="300dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal|bottom"
+        android:src="@drawable/additional_2" />
+
+
 </LinearLayout>
