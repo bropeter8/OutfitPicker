@@ -11,4 +11,6 @@
     <string name="picker">Picker</string>
     <string name="top">Top</string>
     <string name="bottom">Bottom</string>
+    <string name="tops">Tops</string>
+    <string name="bottoms">Bottoms</string>
 </resources>

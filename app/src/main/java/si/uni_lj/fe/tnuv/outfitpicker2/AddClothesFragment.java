@@ -92,8 +92,13 @@ public class AddClothesFragment extends Fragment {
         });
 
         buttonPhotoBottoms.setOnClickListener(v -> {
-            // TODO: Implement action for taking photo of bottoms
-            Toast.makeText(getContext(), "Take Photo of Bottoms", Toast.LENGTH_SHORT).show();
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Requesting camera permission");
+                requestPermissionLauncher.launch(Manifest.permission.CAMERA);
+            } else {
+                Log.d(TAG, "Camera permission already granted");
+                dispatchTakePictureIntent();
+            }
         });
 
         buttonPickBottoms.setOnClickListener(v -> {
