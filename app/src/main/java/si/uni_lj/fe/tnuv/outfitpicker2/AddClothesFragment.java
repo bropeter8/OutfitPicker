@@ -4,6 +4,7 @@ package si.uni_lj.fe.tnuv.outfitpicker2;
 import si.uni_lj.fe.tnuv.outfitpicker2.ImageStorageUtil;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -55,7 +56,8 @@ public class AddClothesFragment extends Fragment {
 
     private final ActivityResultLauncher<Intent> takePictureLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == getActivity().RESULT_OK) {
+                getActivity();
+                if (result.getResultCode() == Activity.RESULT_OK) {
                     // The photo was taken and saved to the currentPhotoPath
                     Log.d(TAG, "Photo saved at: " + currentPhotoPath);
                     ImageStorageUtil.addImagePath(requireContext(), currentPhotoPath);

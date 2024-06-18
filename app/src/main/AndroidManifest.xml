@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Add this query declaration -->
     <queries>
         <intent>
@@ -9,19 +8,15 @@
         </intent>
     </queries>
 
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- Permissions for devices running Android 13 (API level 33) and higher -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Permissions for devices running Android 13 (API level 33) and higher -->
     <uses-permission
         android:name="android.permission.READ_MEDIA_IMAGES"
-        android:required="true"
-        android:maxSdkVersion="33" />
-
+        android:maxSdkVersion="33"
+        android:required="true" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -61,7 +56,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>
