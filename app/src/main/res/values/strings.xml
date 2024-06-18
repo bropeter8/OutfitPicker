@@ -13,4 +13,8 @@
     <string name="bottom">Bottom</string>
     <string name="tops">Tops</string>
     <string name="bottoms">Bottoms</string>
+    <string name="username">Username</string>
+    <string name="update_username">Update Username</string>
+    <string name="update_photo">Update Photo</string>
+    <string name="add_to_favourites">Add to Favourites</string>
 </resources>

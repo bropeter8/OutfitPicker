@@ -22,7 +22,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_top"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="300dp"
         android:layout_marginTop="60dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,12 +34,20 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_bottom"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginTop="380dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="360dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias=".376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/save_outfit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="660dp"
+        android:backgroundTint="@color/lighter_main_color"
+        android:text="@string/add_to_favourites" />
 </RelativeLayout>
