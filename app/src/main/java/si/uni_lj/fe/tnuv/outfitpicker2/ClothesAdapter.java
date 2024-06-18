@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.List;
 
 public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageViewHolder> {
@@ -32,7 +33,23 @@ public class ClothesAdapter extends RecyclerView.Adapter<ClothesAdapter.ImageVie
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         String imagePath = imagePaths.get(position);
-        holder.imageView.setImageURI(Uri.parse(imagePath));
+        Log.d("ClothesAdapter", "Loading image: " + imagePath);
+
+        // Check if the file path is valid
+        File imgFile = new File(imagePath);
+        if (imgFile.exists()) {
+            Uri imageUri = Uri.fromFile(imgFile);
+
+            // Use Glide to load the image
+            Glide.with(holder.imageView.getContext())
+                    .load(imageUri)
+                    .into(holder.imageView);
+
+            // Log to confirm the URI
+            Log.d("ClothesAdapter", "Image URI: " + imageUri.toString());
+        } else {
+            Log.e("ClothesAdapter", "File does not exist: " + imagePath);
+        }
     }
 
     @Override
