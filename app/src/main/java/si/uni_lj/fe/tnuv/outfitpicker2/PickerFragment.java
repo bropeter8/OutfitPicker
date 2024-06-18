@@ -3,10 +3,14 @@ package si.uni_lj.fe.tnuv.outfitpicker2;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +62,42 @@ public class PickerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_picker, container, false);
+        View view = inflater.inflate(R.layout.fragment_picker, container, false);
+        ViewPager2 viewPagerTop = view.findViewById(R.id.viewpager_top);
+        // Assuming you have a list of drawable resources for tops
+        int[] tops = {R.drawable.blue_tshirt, R.drawable.black_tshirt};
+        ArrayList<ViewPagerItem> viewPagerTopItems = new ArrayList<>();
+        for (int top : tops) {
+            ViewPagerItem item = new ViewPagerItem(top);
+            viewPagerTopItems.add(item);
+        }
+        VPAdapter vpAdapterTop = new VPAdapter(viewPagerTopItems);
+        viewPagerTop.setAdapter(vpAdapterTop);
+
+        // Initialize and set up the ViewPager for bottoms
+        ViewPager2 viewPagerBottom = view.findViewById(R.id.viewpager_bottom);
+        // Assuming you have a list of drawable resources for bottoms
+        int[] bottoms = {R.drawable.black_jeans, R.drawable.blue_jeans};
+        ArrayList<ViewPagerItem> viewPagerBottomItems = new ArrayList<>();
+        for (int bottom : bottoms) {
+            ViewPagerItem item = new ViewPagerItem(bottom);
+            viewPagerBottomItems.add(item);
+        }
+        VPAdapter vpAdapterBottom = new VPAdapter(viewPagerBottomItems);
+        viewPagerBottom.setAdapter(vpAdapterBottom);
+
+        // Set additional properties for both ViewPagers if needed
+        // For example:
+        viewPagerTop.setClipToPadding(false);
+        viewPagerTop.setClipChildren(false);
+        viewPagerTop.setOffscreenPageLimit(3);
+        viewPagerTop.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        viewPagerBottom.setClipToPadding(false);
+        viewPagerBottom.setClipChildren(false);
+        viewPagerBottom.setOffscreenPageLimit(3);
+        viewPagerBottom.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+        return view;
     }
 }

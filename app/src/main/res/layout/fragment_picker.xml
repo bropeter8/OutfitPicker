@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_color"
     tools:context=".ClosetFragment">
 
@@ -19,41 +20,26 @@
         android:textSize="25sp" />
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_top"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="100dp" />
+        android:layout_height="320dp"
+        android:layout_marginTop="60dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias=".376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager_bottom"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="400dp"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"> <!-- To center align the buttons horizontally -->
-
-        <Button
-            android:id="@+id/top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/main_color"
-            android:fontFamily="sans-serif-black"
-            android:layout_marginEnd="5dp"
-            android:text="@string/top" />
-
-        <Button
-            android:id="@+id/bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/main_color"
-            android:fontFamily="sans-serif-black"
-            android:layout_marginStart="5dp"
-            android:text="@string/bottom" />
-
-    </LinearLayout>
+        android:layout_height="320dp"
+        android:layout_marginTop="380dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias=".376"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </RelativeLayout>
