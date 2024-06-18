@@ -4,11 +4,30 @@
     android:background="@color/main_color">
 
     <ImageView
+        android:id="@+id/additional_1"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/additional_1" />
+
+
+    <Button
+        android:id="@+id/settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/lighter_main_color"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/settings"/>
+
+    <ImageView
         android:id="@+id/profile_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/profile_placeholder" />
 
     <TextView
@@ -59,6 +78,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="400dp" />
+        android:layout_marginTop="450dp" />
 
 </RelativeLayout>

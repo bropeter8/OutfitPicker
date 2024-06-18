@@ -47,7 +47,7 @@ public class ClosetFragment extends Fragment {
         updateButtonStyles();
 
         // Clear old SharedPreferences data (only call this once, you can comment it out after the first run)
-        // ImageStorageUtil.clearOldData(requireContext());
+        ImageStorageUtil.clearOldData(requireContext());
 
         // Retrieve stored image paths using ImageStorageUtil
         clothingItems = ImageStorageUtil.getClothingItems(requireContext());

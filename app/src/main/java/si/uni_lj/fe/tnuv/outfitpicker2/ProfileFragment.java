@@ -38,10 +38,11 @@ public class ProfileFragment extends Fragment {
     private ImageView profilePhoto;
     private TextView username;
     private EditText usernameInput;
-    private Button updateButton, changePhotoButton;
+    private Button updateButton, changePhotoButton, settingsButton;
 
     private static final String PREFS_NAME = "outfit_prefs";
     private static final String PREF_OUTFITS = "saved_outfits";
+    private static final String PREF_USERNAME = "username";
 
     private SharedPreferences sharedPreferences;
     private RecyclerView outfitsRecyclerView;
@@ -58,11 +59,14 @@ public class ProfileFragment extends Fragment {
         usernameInput = view.findViewById(R.id.username_input);
         updateButton = view.findViewById(R.id.update_button);
         changePhotoButton = view.findViewById(R.id.photo_button);
+        settingsButton = view.findViewById(R.id.settings_button);
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username.setText(usernameInput.getText().toString());
+                String newName = usernameInput.getText().toString();
+                username.setText(newName);
+                saveUsername(newName); // Save username to SharedPreferences
             }
         });
 
@@ -77,11 +81,19 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSettingsActivity();
+            }
+        });
+
         outfitsRecyclerView = view.findViewById(R.id.outfits_recycler_view);
         outfitsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         loadSavedOutfits();
+        loadUsername(); // Load username from SharedPreferences
 
         outfitsAdapter = new OutfitsAdapter(savedOutfits);
         outfitsRecyclerView.setAdapter(outfitsAdapter);
@@ -99,6 +111,16 @@ public class ProfileFragment extends Fragment {
             int bottom = Integer.parseInt(parts[1]);
             savedOutfits.add(new int[]{top, bottom});
         }
+    }
+
+    private void loadUsername() {
+        String savedUsername = sharedPreferences.getString(PREF_USERNAME, "");
+        username.setText(savedUsername);
+        usernameInput.setText(savedUsername);
+    }
+
+    private void saveUsername(String username) {
+        sharedPreferences.edit().putString(PREF_USERNAME, username).apply();
     }
 
     private boolean checkPermissions() {
@@ -140,8 +162,13 @@ public class ProfileFragment extends Fragment {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 pickImage();
             } else {
-                // Add Later
+                // Handle permission denial
             }
         }
+    }
+
+    private void openSettingsActivity() {
+        Intent intent = new Intent(requireActivity(), SettingsActivity.class);
+        startActivity(intent);
     }
 }
