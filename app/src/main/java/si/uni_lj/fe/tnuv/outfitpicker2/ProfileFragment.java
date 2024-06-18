@@ -38,7 +38,7 @@ public class ProfileFragment extends Fragment {
     private ImageView profilePhoto;
     private TextView username;
     private EditText usernameInput;
-    private Button updateButton, changePhotoButton;
+    private Button updateButton, changePhotoButton, settingsButton;
 
     private static final String PREFS_NAME = "outfit_prefs";
     private static final String PREF_OUTFITS = "saved_outfits";
@@ -58,6 +58,7 @@ public class ProfileFragment extends Fragment {
         usernameInput = view.findViewById(R.id.username_input);
         updateButton = view.findViewById(R.id.update_button);
         changePhotoButton = view.findViewById(R.id.photo_button);
+        settingsButton = view.findViewById(R.id.settings_button);
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +75,13 @@ public class ProfileFragment extends Fragment {
                 } else {
                     requestPermissions();
                 }
+            }
+        });
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSettingsActivity();
             }
         });
 
@@ -143,5 +151,10 @@ public class ProfileFragment extends Fragment {
                 // Add Later
             }
         }
+    }
+
+    private void openSettingsActivity() {
+        Intent intent = new Intent(requireActivity(), SettingsActivity.class);
+        startActivity(intent);
     }
 }
