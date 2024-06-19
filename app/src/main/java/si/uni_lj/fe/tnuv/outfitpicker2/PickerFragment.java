@@ -100,7 +100,10 @@ public class PickerFragment extends Fragment {
         int selectedTop = viewPagerTop.getCurrentItem();
         int selectedBottom = viewPagerBottom.getCurrentItem();
 
-        String outfit = selectedTop + "," + selectedBottom;
+        ClothingItem selectedTopItem = tops.get(selectedTop);
+        ClothingItem selectedBottomItem = bottoms.get(selectedBottom);
+
+        String outfit = selectedTopItem.getImagePath() + "," + selectedBottomItem.getImagePath();
 
         Set<String> savedOutfits = sharedPreferences.getStringSet(PREF_OUTFITS, new HashSet<>());
         savedOutfits.add(outfit);
@@ -122,13 +125,25 @@ public class PickerFragment extends Fragment {
             // Get the last saved outfit
             String lastSavedOutfit = savedOutfits.iterator().next();
             String[] outfitParts = lastSavedOutfit.split(",");
-            int savedTopPosition = Integer.parseInt(outfitParts[0]);
-            int savedBottomPosition = Integer.parseInt(outfitParts[1]);
+            String savedTopPath = outfitParts[0];
+            String savedBottomPath = outfitParts[1];
+
+            int savedTopPosition = getPositionByPath(tops, savedTopPath);
+            int savedBottomPosition = getPositionByPath(bottoms, savedBottomPath);
 
             // Ensure viewpagers are set to the saved positions
             viewPagerTop.setCurrentItem(savedTopPosition);
             viewPagerBottom.setCurrentItem(savedBottomPosition);
             Log.d(TAG, "Loaded saved outfit: Top=" + savedTopPosition + ", Bottom=" + savedBottomPosition);
         }
+    }
+
+    private int getPositionByPath(List<ClothingItem> items, String path) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getImagePath().equals(path)) {
+                return i;
+            }
+        }
+        return 0; // Default to the first item if not found
     }
 }

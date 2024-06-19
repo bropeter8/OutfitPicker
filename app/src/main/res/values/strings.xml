@@ -18,7 +18,7 @@
     <string name="update_photo">Update Photo</string>
     <string name="add_to_favourites">Add to Favourites</string>
     <string name="all">All</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
@@ -39,4 +39,6 @@
     <string name="about_app_description">About our app</string>
     <string name="settings">Settings</string>
     <string name="about_text">In 2024, this app was created by Peter Brodnik and Natalija Ivanović, in partnership with the Faculty of Electrical Engineering.</string>
+    <string name="top_image">Top Image Outfit</string>
+    <string name="bottom_image">Bottom Image Outfit</string>
 </resources>
