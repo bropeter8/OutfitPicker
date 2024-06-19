@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -49,19 +50,19 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         // Back Button click listener
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed(); // Go back to the previous activity
-            }
+        backButton.setOnClickListener(v -> {
+            finish(); // Go back to the previous activity
         });
 
         // About Button click listener
         TextView aboutButton = findViewById(R.id.about_button);
-        aboutButton.setOnClickListener(new View.OnClickListener() {
+        aboutButton.setOnClickListener(v -> openAboutActivity());
+
+        // Handle back button press
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
-            public void onClick(View v) {
-                openAboutActivity();
+            public void handleOnBackPressed() {
+                finish();
             }
         });
     }
@@ -71,4 +72,3 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
