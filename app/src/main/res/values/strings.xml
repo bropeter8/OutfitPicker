@@ -41,4 +41,5 @@
     <string name="about_text">In 2024, this app was created by Peter Brodnik and Natalija Ivanović, in partnership with the Faculty of Electrical Engineering.</string>
     <string name="top_image">Top Image Outfit</string>
     <string name="bottom_image">Bottom Image Outfit</string>
+    <string name="select_an_image">Select an Image</string>
 </resources>
