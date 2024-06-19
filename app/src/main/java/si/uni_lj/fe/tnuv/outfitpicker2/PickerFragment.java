@@ -62,6 +62,11 @@ public class PickerFragment extends Fragment {
 
         loadClothingItems();
 
+        // Check if either tops or bottoms are empty and show a message
+        if (tops.isEmpty() || bottoms.isEmpty()) {
+            Toast.makeText(getContext(), "Please add clothes to the Closet by clicking the + icon.", Toast.LENGTH_LONG).show();
+        }
+
         // Set up adapters for tops and bottoms
         vpAdapterTop = new PickerClothesAdapter(tops);
         viewPagerTop.setAdapter(vpAdapterTop);
