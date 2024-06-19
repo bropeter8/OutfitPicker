@@ -113,13 +113,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        changePhotoButton.setOnClickListener(v -> {
+        /*changePhotoButton.setOnClickListener(v -> {
             if (checkPermissions()) {
                 pickImage();
             } else {
                 requestPermissions();
             }
-        });
+        });*/
 
         settingsButton.setOnClickListener(v -> openSettingsActivity());
 
@@ -129,7 +129,7 @@ public class ProfileFragment extends Fragment {
         sharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         loadSavedOutfits();
         loadUsername(); // Load username from SharedPreferences
-        loadProfilePhoto(); // Load profile photo from SharedPreferences
+        /*loadProfilePhoto(); // Load profile photo from SharedPreferences*/
 
         outfitsAdapter = new OutfitsAdapter(savedOutfits);
         outfitsRecyclerView.setAdapter(outfitsAdapter);
